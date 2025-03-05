@@ -2,7 +2,16 @@ const searchString = new URLSearchParams(window.location.search);
 const id = searchString.get('id');
 
 const user = JSON.parse(localStorage.getItem(`user-${id}`));
+
 if (user) {
+    fillPage(user);
+} else {
+    fetch(`https://jsonplaceholder.typicode.com/users/${id}`).then(value => value.json()).then(user => {
+        fillPage(user);
+    });
+}
+
+function fillPage(user) {
     const userInfo = document.getElementById('user-info');
     const userId = document.createElement('p');
     userId.innerText = `#${user.id}`;
@@ -34,30 +43,21 @@ if (user) {
     const button = document.getElementById('manage-posts');
     const posts = document.getElementById('posts-container');
     button.onclick = function () {
-        if (posts.children.length > 0) {
-            button.textContent = `Show posts`;
-            posts.innerText = '';
-        } else {
-            showPosts(id, posts);
+        if (posts.children.length === 0) {
+            fillPosts(posts);
             button.textContent = `Hide posts`;
+        } else if (posts.style.display === 'none') {
+            posts.style.display = 'grid';
+            button.textContent = `Hide posts`;
+        } else {
+            posts.style.display = 'none';
+            button.textContent = `Show posts`;
         }
     }
 }
 
-function appendFields(obj, container) {
-    for (let key in obj) {
-        if (typeof obj[key] !== 'object') {
-            const p = document.createElement('p');
-            p.innerText = `${key}: ${obj[key]}`;
-            container.appendChild(p);
-        }
-    }
-}
-
-function showPosts(id, container) {
+function fillPosts(container) {
     fetch(`https://jsonplaceholder.typicode.com/users/${id}/posts`).then(value => value.json()).then(posts => {
-        console.log(posts);
-        console.log(id);
         for (let post of posts) {
             const card = document.createElement('div');
             const p = document.createElement('span');
@@ -72,4 +72,14 @@ function showPosts(id, container) {
             container.appendChild(card);
         }
     });
+}
+
+function appendFields(obj, container) {
+    for (let key in obj) {
+        if (typeof obj[key] !== 'object') {
+            const p = document.createElement('p');
+            p.innerText = `${key}: ${obj[key]}`;
+            container.appendChild(p);
+        }
+    }
 }
