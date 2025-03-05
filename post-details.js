@@ -8,7 +8,7 @@ Promise.all([post, comments]).then((value) => {
         const [post, comments] = value;
         const container = document.createElement('div');
         container.classList.add('container');
-
+        console.log(post);
         if (post) {
             document.body.appendChild(container);
 

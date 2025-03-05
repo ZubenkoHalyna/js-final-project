@@ -66,7 +66,7 @@ function showPosts(id, container) {
             const button = document.createElement('button');
             button.textContent = 'Details';
             button.onclick = function () {
-                window.location.href = `post-details.html?id=${id}`;
+                window.location.href = `post-details.html?id=${post.id}`;
             }
             card.append(p, button);
             container.appendChild(card);
