@@ -1,0 +1,42 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body > div {
+    width: fit-content;
+    margin: 0 auto;
+}
+
+#container {
+    display: grid;
+    gap: 1rem;
+    grid-template-areas: "div div";
+    grid-auto-columns: max-content;
+}
+
+p:first-of-type {
+    color: dimgray;
+}
+
+#container div {
+    background-color: #eaeaea;
+    padding: 1rem;
+}
+
+button {
+    padding: 0.25rem 2rem;
+    border: none;
+    cursor: pointer;
+    margin-top: 1rem;
+    background-color: white;
+}
+
+button:hover {
+    background-color: lightgray;
+}
+
+h1 {
+    margin: 1rem 0;
+}
