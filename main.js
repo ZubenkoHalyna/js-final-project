@@ -10,8 +10,7 @@ fetch('https://jsonplaceholder.typicode.com/users').then(value => value.json()).
         const button = document.createElement('button');
         button.textContent = 'User details';
         button.onclick = () => {
-            localStorage.setItem(`user-${user.id}`, JSON.stringify(user));
-            console.log(JSON.stringify(user));
+            localStorage.setItem(`user`, JSON.stringify(user));
             window.location.href = 'user-details.html?id=' + user.id;
         }
         card.append(id, name, button);

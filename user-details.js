@@ -1,14 +1,17 @@
 const searchString = new URLSearchParams(window.location.search);
 const id = searchString.get('id');
 
-const user = JSON.parse(localStorage.getItem(`user-${id}`));
+const user = JSON.parse(localStorage.getItem(`user`));
 
-if (user) {
+if (user && user.id === +id) {
     fillPage(user);
 } else {
-    fetch(`https://jsonplaceholder.typicode.com/users/${id}`).then(value => value.json()).then(user => {
-        fillPage(user);
-    });
+    fetch(`https://jsonplaceholder.typicode.com/users/${id}`)
+        .then(value => value.json())
+        .then(user => {
+            localStorage.setItem('user', JSON.stringify(user));
+            fillPage(user);
+        });
 }
 
 function fillPage(user) {
@@ -66,6 +69,7 @@ function fillPosts(container) {
             const button = document.createElement('button');
             button.textContent = 'Details';
             button.onclick = function () {
+                localStorage.setItem('post', JSON.stringify(post));
                 window.location.href = `post-details.html?id=${post.id}`;
             }
             card.append(p, button);

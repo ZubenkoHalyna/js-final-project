@@ -8,7 +8,7 @@ body {
     padding: 1rem;
 }
 
-.container {
+#container {
     background-color: #eaeaea;
     padding: 1rem;
     min-width: 800px;
@@ -32,22 +32,22 @@ h3 {
     text-transform: capitalize;
 }
 
-.container > p:first-of-type {
+#post-view > p:first-of-type {
     color: dimgray;
     font-size: 24px;
 }
 
-.author {
+.author p:first-of-type {
     font-size: 24px;
+}
+
+.author p:last-of-type{
+    color: dimgray;
+    font-size: 1rem;
     margin-bottom: 1rem;
 }
 
-.author p {
-    color: dimgray;
-    font-size: 1rem;
-}
-
-.comments-container {
+#comments-view {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 1rem;
@@ -66,4 +66,26 @@ h3 {
 
 .comment .comment-body {
     color: #424242;
+}
+
+.buttons {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+button {
+    padding: 0.25rem 0;
+    flex: 1 0 0;
+    border: none;
+    cursor: pointer;
+    background-color: white;
+}
+
+button:hover:not(:disabled) {
+    background-color: lightgray;
+}
+
+button:disabled {
+    cursor: auto;
 }
