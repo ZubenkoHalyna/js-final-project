@@ -24,21 +24,30 @@ async function getPostData() {
                 return value.json();
             });
 
-    return [post, await user];
+    return [post, user];
 }
 
 postPromise.then((value) => {
     const [post, user] = value;
-    if (wasLoaded[0]) {
-        localStorage.setItem('post', JSON.stringify(post));
-    }
-    if (wasLoaded[1]) {
-        localStorage.setItem('user', JSON.stringify(user));
-    }
+
+    const postId = document.getElementById('post-id');
+    postId.innerText = `#${post.id}`;
+    const title = document.getElementById('post-title');
+    title.innerText = post.title;
+
+    const authorId = document.getElementById('user-id');
+    authorId.innerText = `#${user.id}`;
+    const username = document.getElementById('username');
+    username.innerText = `@${user.username}`;
+    const fullName = document.getElementById('user-full-name');
+    fullName.innerText = user.name;
+
+    const body = document.getElementById('post-body');
+    body.innerText = post.body;
 
     const next = document.getElementById('next');
     if (post.id === 100) next.disabled = true;
-        next.onclick = function () {
+    next.onclick = function () {
         window.location.href = `post-details.html?id=${post.id + 1}`;
     }
     const previous = document.getElementById('previous');
@@ -47,24 +56,12 @@ postPromise.then((value) => {
         window.location.href = `post-details.html?id=${post.id - 1}`;
     }
 
-    const postId = document.createElement('p');
-    postId.innerText = `#${post.id}`;
-    const title = document.createElement('h1');
-    title.innerText = post.title;
-
-    const author = document.createElement('p');
-    author.classList.add('author');
-    const name = document.createElement('p');
-    name.innerText = `by ${user.name}`;
-
-    const authorId = document.createElement('p');
-    authorId.innerText = `#${user.id} - @${user.username}`;
-    author.append(name, authorId);
-
-    const body = document.createElement('p');
-    body.classList.add('post-body');
-    body.innerText = post.body;
-    document.getElementById('post-view').append(postId, title, author, body);
+    if (wasLoaded[0]) {
+        localStorage.setItem('post', JSON.stringify(post));
+    }
+    if (wasLoaded[1]) {
+        localStorage.setItem('user', JSON.stringify(user));
+    }
 });
 
 commentsPromise.then(comments => {
