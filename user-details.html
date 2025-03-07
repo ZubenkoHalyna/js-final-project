@@ -7,7 +7,9 @@
 </head>
 <body>
 <div id="container">
-    <div id="user-info">
+    <div class="user-info">
+        <p id="user-id"></p>
+        <h1 id="user-name"></h1>
     </div>
     <div class="details">
         <div class="wrap">
@@ -16,7 +18,7 @@
         </div>
         <div class="wrap">
             <img class="icon" src="icons/username.svg" alt="username icon">
-            <span id="username"></span>
+            <span id="user-pen-name"></span>
         </div>
         <div class="wrap">
             <img class="icon" src="icons/phone.svg" alt="phone icon">
@@ -28,16 +30,22 @@
         </div>
         <div class="wrap multi-line">
             <img class="icon" src="icons/location.svg" alt="location icon">
-            <div id="location"></div>
+            <div id="location">
+                <p id="gps"></p>
+            </div>
         </div>
         <div class="wrap multi-line">
             <img class="icon" src="icons/company.svg" alt="company icon">
-            <span id="company"></span>
+            <div id="company">
+                <p>Company</p>
+            </div>
         </div>
     </div>
-    <button id="manage-posts">Show posts</button>
+    <button id="btn-posts">Show posts</button>
     <div id="posts-container"></div>
 </div>
+
+<script src="common.js"></script>
 <script src="user-details.js"></script>
 </body>
 </html>

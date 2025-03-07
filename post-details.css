@@ -39,14 +39,12 @@ h3 {
 
 .author {
     display: flex;
-    /*align-items: flex-end;*/
     gap: 0.5rem;
     margin-bottom: 1rem;
 }
 
 .author span, .author #user-full-name {
     font-size: 24px;
-    line-height: 120%;
 }
 
 .site-user-details {

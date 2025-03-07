@@ -1,70 +1,43 @@
-const searchString = new URLSearchParams(window.location.search);
-const id = searchString.get('id');
+const postId = getIdFromUrl('post');
 
-const commentsPromise = fetch(`https://jsonplaceholder.typicode.com/posts/${id}/comments`)
-    .then(value => value.json());
+getCachedData("post", postId, fetchPost)
+    .then(post => {
+        if (!Number.isInteger(post.userId))
+            return Promise.reject("Wrong post data");
+        const userPromise = getCachedData("user", post.userId, fetchUser);
+        fillPostInfo(post);
+        return userPromise;
+    })
+    .then(user => fillUserInfo(user))
+    .catch(error => redirectToErrorPage(error));
 
-const postPromise = getPostData();
-const wasLoaded = [false, false];
+fetchComments(postId).then(comments => fillCommentsInfo(comments));
 
-async function getPostData() {
-    const localPost = JSON.parse(localStorage.getItem('post'));
-    const post = (localPost && localPost.id === +id) ? localPost
-        : await fetch(`https://jsonplaceholder.typicode.com/posts/${id}`)
-            .then(value => {
-                wasLoaded[0] = true;
-                return value.json();
-            });
-
-    const localUser = JSON.parse(localStorage.getItem('user'));
-    const user = (localUser && localUser.id === post.userId) ? localUser
-        : await fetch(`https://jsonplaceholder.typicode.com/users/${post.userId}`)
-            .then(value => {
-                wasLoaded[1] = true;
-                return value.json();
-            });
-
-    return [post, user];
-}
-
-postPromise.then((value) => {
-    const [post, user] = value;
-
-    const postId = document.getElementById('post-id');
-    postId.innerText = `#${post.id}`;
-    const title = document.getElementById('post-title');
-    title.innerText = post.title;
-
-    const authorId = document.getElementById('user-id');
-    authorId.innerText = `#${user.id}`;
-    const username = document.getElementById('username');
-    username.innerText = `@${user.username}`;
-    const fullName = document.getElementById('user-full-name');
-    fullName.innerText = user.name;
-
-    const body = document.getElementById('post-body');
-    body.innerText = post.body;
+function fillPostInfo(post) {
+    document.getElementById('post-id').innerText = `#${post.id}`;
+    document.getElementById('post-title').innerText = post.title;
+    document.getElementById('post-body').innerText = post.body;
 
     const next = document.getElementById('next');
     if (post.id === 100) next.disabled = true;
-    next.onclick = function () {
-        window.location.href = `post-details.html?id=${post.id + 1}`;
-    }
+    next.onclick = () => showNewPost(post.id + 1);
+
     const previous = document.getElementById('previous');
     if (post.id === 1) previous.disabled = true;
-    previous.onclick = function () {
-        window.location.href = `post-details.html?id=${post.id - 1}`;
-    }
+    previous.onclick = () => showNewPost(post.id - 1);
+}
 
-    if (wasLoaded[0]) {
-        localStorage.setItem('post', JSON.stringify(post));
-    }
-    if (wasLoaded[1]) {
-        localStorage.setItem('user', JSON.stringify(user));
-    }
-});
+function showNewPost(postId) {
+    window.location.href = `post-details.html?postId=${postId}`;
+}
 
-commentsPromise.then(comments => {
+function fillUserInfo(user) {
+    document.getElementById('user-id').innerText = `#${user.id}`;
+    document.getElementById('username').innerText = `@${user.username}`;
+    document.getElementById('user-full-name').innerText = user.name;
+}
+
+function fillCommentsInfo(comments) {
     if (comments && comments.length) {
         const commentsView = document.getElementById('comments-view')
         for (let comment of comments) {
@@ -88,4 +61,4 @@ commentsPromise.then(comments => {
             commentsView.appendChild(card);
         }
     }
-});
+}
