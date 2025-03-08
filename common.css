@@ -39,8 +39,9 @@ button:hover:not(:disabled) {
     box-shadow: var(--accent-shadow);
 }
 
-button.secondary:hover {
+button.secondary:hover:not(:disabled) {
     background-color: var(--accent-secondary-light);
+    box-shadow: var(--accent-shadow);
 }
 
 button:disabled {
