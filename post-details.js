@@ -1,28 +1,30 @@
-const postId = getIdFromUrl('post');
+document.addEventListener("DOMContentLoaded", function () {
+    const postId = getIdFromUrl('post');
 
-getCachedData("post", postId, fetchPost)
-    .then(post => {
-        if (!Number.isInteger(post.userId))
-            return Promise.reject("Wrong post data");
-        const userPromise = getCachedData("user", post.userId, fetchUser);
-        fillPostInfo(post);
-        return userPromise;
-    })
-    .then(user => fillUserInfo(user))
-    .catch(error => redirectToErrorPage(error));
+    getCachedData("post", postId, fetchPost)
+        .then(post => {
+            if (!Number.isInteger(post.userId))
+                return Promise.reject("Wrong post data");
+            const userPromise = getCachedData("user", post.userId, fetchUser);
+            fillPostInfo(post);
+            return userPromise;
+        })
+        .then(user => fillUserInfo(user))
+        .catch(error => redirectToErrorPage(error));
 
-fetchComments(postId).then(comments => fillCommentsInfo(comments));
+    fetchComments(postId).then(comments => fillCommentsInfo(comments));
+});
 
 function fillPostInfo(post) {
     document.getElementById('post-id').innerText = `#${post.id}`;
     document.getElementById('post-title').innerText = post.title;
     document.getElementById('post-body').innerText = post.body;
 
-    const next = document.getElementById('next');
+    const next = document.getElementById('btn-next');
     if (post.id === 100) next.disabled = true;
     next.onclick = () => showNewPost(post.id + 1);
 
-    const previous = document.getElementById('previous');
+    const previous = document.getElementById('btn-previous');
     if (post.id === 1) previous.disabled = true;
     previous.onclick = () => showNewPost(post.id - 1);
 }
@@ -38,27 +40,27 @@ function fillUserInfo(user) {
 }
 
 function fillCommentsInfo(comments) {
-    if (comments && comments.length) {
-        const commentsView = document.getElementById('comments-view')
-        for (let comment of comments) {
-            const id = document.createElement('p');
-            id.innerText = `#${comment.id}`;
+    const commentsContainer = document.getElementById('comments-container')
+    comments?.forEach(comment => commentsContainer.appendChild(createCommentCard(comment)));
+}
 
-            const title = document.createElement('h3');
-            title.innerText = comment.name;
+function createCommentCard() {
+    const id = document.createElement('p');
+    id.innerText = `#${comment.id}`;
 
-            const author = document.createElement('p');
-            author.innerText = `by ${comment.email}`;
-            author.classList.add('author');
+    const title = document.createElement('h3');
+    title.innerText = comment.name;
 
-            const body = document.createElement('p');
-            body.classList.add('comment-body');
-            body.innerText = comment.body;
+    const author = document.createElement('p');
+    author.innerText = `by ${comment.email}`;
+    author.classList.add('author');
 
-            const card = document.createElement('div');
-            card.classList.add('comment');
-            card.append(id, title, author, body);
-            commentsView.appendChild(card);
-        }
-    }
+    const body = document.createElement('p');
+    body.classList.add('comment-body');
+    body.innerText = comment.body;
+
+    const card = document.createElement('div');
+    card.classList.add('comment');
+    card.append(id, title, author, body);
+    return card;
 }

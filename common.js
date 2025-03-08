@@ -17,7 +17,7 @@ const fetchComments = (postId) => fetchData(`https://jsonplaceholder.typicode.co
 function getIdFromUrl(objName) {
     const searchParams = new URLSearchParams(window.location.search);
     const id = +searchParams.get(`${objName}Id`);
-    if (!id) redirectToErrorPage(`Incorrect ${objName} id`);
+    if (!id || !Number.isInteger(id)) redirectToErrorPage(`Incorrect ${objName} id`);
     return id;
 }
 

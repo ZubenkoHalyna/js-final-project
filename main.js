@@ -1,4 +1,6 @@
-fetchUsers().then(users => fillUsersInfo(users));
+document.addEventListener("DOMContentLoaded", async function() {
+    fillUsersInfo(await fetchUsers());
+});
 
 function fillUsersInfo(users) {
     if (!users || !Array.isArray(users))
