@@ -11,7 +11,7 @@
 .details {
     display: grid;
     grid-template-areas: "div div";
-    gap: 1rem;
+    gap: 2rem;
     margin: 2rem 0;
 }
 
