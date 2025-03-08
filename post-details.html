@@ -3,32 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <title>Post details</title>
+    <link rel="stylesheet" href="common.css">
     <link rel="stylesheet" href="post-details.css">
 </head>
 <body>
-<div id="container">
-    <div>
-        <div class="buttons">
-            <button id="btn-previous">Previous</button>
-            <button id="btn-next">Next</button>
-        </div>
-        <p id="post-id"></p>
+<div class="container">
+    <div class="header">
+        <p class="secondary-text" id="post-id"></p>
         <h1 id="post-title"></h1>
-        <div class="author">
-            <span>By</span>
-            <div class="user-info">
-                <p id="user-full-name"></p>
-                <div class="site-user-details">
-                    <p id="username"></p>
-                    <p id="user-id"></p>
-                </div>
-            </div>
-        </div>
-        <p id="post-body"></p>
     </div>
+    <div class="author-info">
+        <span>By</span>
+        <h3 id="user-full-name"></h3>
+        <span class="secondary-text">-</span>
+        <p id="username" class="secondary-text"></p>
+        <span class="secondary-text">-</span>
+        <p id="user-id" class="secondary-text"></p>
+    </div>
+    <p id="post-body"></p>
+    <div class="buttons">
+        <button class="secondary" id="btn-previous">Previous</button>
+        <button id="btn-next">Next</button>
+    </div>
+</div>
+<div class="cards-container">
     <h2>Comments</h2>
-    <div id="comments-container">
-    </div>
 </div>
 
 <script src="common.js"></script>

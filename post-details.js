@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", function () {
+window.onload = function () {
     const postId = getIdFromUrl('post');
 
     getCachedData("post", postId, fetchPost)
@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", function () {
         .catch(error => redirectToErrorPage(error));
 
     fetchComments(postId).then(comments => fillCommentsInfo(comments));
-});
+}
 
 function fillPostInfo(post) {
     document.getElementById('post-id').innerText = `#${post.id}`;
@@ -36,31 +36,37 @@ function showNewPost(postId) {
 function fillUserInfo(user) {
     document.getElementById('user-id').innerText = `#${user.id}`;
     document.getElementById('username').innerText = `@${user.username}`;
-    document.getElementById('user-full-name').innerText = user.name;
+    document.getElementById('user-full-name').innerText = user.name //+ ` - @${user.username}`;
 }
 
 function fillCommentsInfo(comments) {
-    const commentsContainer = document.getElementById('comments-container')
+    const commentsContainer = document.getElementsByClassName('cards-container')[0];
     comments?.forEach(comment => commentsContainer.appendChild(createCommentCard(comment)));
 }
 
-function createCommentCard() {
+function createCommentCard(comment) {
     const id = document.createElement('p');
     id.innerText = `#${comment.id}`;
+    id.classList.add('secondary-text');
 
     const title = document.createElement('h3');
     title.innerText = comment.name;
 
-    const author = document.createElement('p');
-    author.innerText = `by ${comment.email}`;
+    const author = document.createElement('div');
+    author.classList.add('secondary-text');
     author.classList.add('author');
+    const p = document.createElement('span');
+    const email = document.createElement('div');
+    p.innerText = 'By';
+    email.innerText = comment.email;
+    author.append(p, email);
 
     const body = document.createElement('p');
     body.classList.add('comment-body');
     body.innerText = comment.body;
 
     const card = document.createElement('div');
-    card.classList.add('comment');
+    card.classList.add('card');
     card.append(id, title, author, body);
     return card;
 }

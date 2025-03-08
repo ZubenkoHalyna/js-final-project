@@ -4,39 +4,18 @@
     box-sizing: border-box;
 }
 
-body > div {
-    width: fit-content;
-    margin: 0 auto;
+h1 {
+    margin: 1rem 0;
 }
 
-#container {
-    display: grid;
-    gap: 1rem;
-    grid-template-areas: "div div";
-    grid-auto-columns: max-content;
+.container {
+    background-color: unset;
 }
 
-p:first-of-type {
-    color: dimgray;
-}
-
-#container div {
-    background-color: #eaeaea;
-    padding: 1rem;
+.cards-container {
+    grid-template-columns: repeat(2, 1fr);
 }
 
 button {
-    padding: 0.25rem 2rem;
-    border: none;
-    cursor: pointer;
     margin-top: 1rem;
-    background-color: white;
-}
-
-button:hover {
-    background-color: lightgray;
-}
-
-h1 {
-    margin: 1rem 0;
 }

@@ -1,107 +1,63 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
 body {
     padding: 1rem;
 }
 
-#container {
-    background-color: #eaeaea;
-    padding: 1rem;
-    min-width: 800px;
-    max-width: 80%;
-    margin: 0 auto;
-}
-
-
 h1 {
     text-transform: capitalize;
-    margin-bottom: 0.5rem;
     line-height: 100%;
 }
 
 h2 {
-    margin: 2rem 0 1rem 0;
+    grid-column: span 4;
+    text-align: center;
 }
 
 h3 {
-    color: #424242;
-    margin-bottom: 0.5rem;
     text-transform: capitalize;
-}
-
-#post-id {
-    color: dimgray;
-    font-size: 24px;
-}
-
-.author {
-    display: flex;
-    gap: 0.5rem;
-    margin-bottom: 1rem;
-}
-
-.author span, #user-full-name {
-    font-size: 24px;
-}
-
-.site-user-details {
-    display: flex;
-    justify-content: space-between;
-}
-
-.user-info {
-    width: fit-content;
-}
-
-#username, #user-id {
-    color: dimgray;
-    font-size: 1rem;
-}
-
-#comments-container {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1rem;
-}
-
-.comment {
-    padding: 1rem;
-    background-color: #fafafa;
-    color: #9f9f9f;
-}
-
-.comment .author {
-    font-size: 1rem;
-    line-break: anywhere;
-    margin-bottom: 1rem;
-}
-
-.comment .comment-body {
-    color: #424242;
 }
 
 .buttons {
     display: flex;
     gap: 1rem;
-    margin-bottom: 1rem;
 }
 
-button {
-    padding: 0.25rem 0;
-    flex: 1 0 0;
-    border: none;
-    cursor: pointer;
-    background-color: white;
+.container {
+    gap: 1rem;
+    padding: 2rem;
 }
 
-button:hover:not(:disabled) {
-    background-color: lightgray;
+.author-info {
+    display: flex;
+    gap: 0.5rem;
+    margin-left: 2rem;
+    align-items: baseline;
 }
 
-button:disabled {
-    cursor: auto;
+.cards-container {
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.card {
+    justify-content: start;
+}
+
+.card .author {
+    margin: 1rem 0;
+    display: flex;
+    gap: 0.5rem;
+}
+
+.cards-container .author div {
+    word-break: break-all;
+}
+
+#post-body {
+    line-height: 1.2rem;
+    padding-top: 1rem;
+}
+
+#post-body::first-letter {
+    font-size: 350%;
+    text-transform: capitalize;
+    color: var(--accent);
 }

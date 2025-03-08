@@ -4,48 +4,20 @@
     box-sizing: border-box;
 }
 
-body {
-    padding: 1rem;
-}
-
-#container {
-    display: flex;
-    flex-direction: column;
-    background-color: #eaeaea;
-    min-width: 800px;
-    max-width: 80%;
-    padding: 1rem;
-    margin: 0 auto;
-}
-.user-info > p:first-of-type {
-    color: dimgray;
-    font-size: 24px;
+.container {
+    padding: 2rem 5% 2rem 5%;
 }
 
 .details {
     display: grid;
     grid-template-areas: "div div";
-    row-gap: 2rem;
-    column-gap: 1rem;
-    margin: 1rem 0 2rem 0;
-}
-
-button {
-    width: 90%;
-    align-self: center;
-    padding: 0.25rem 2rem;
-    border: none;
-    cursor: pointer;
-    background-color: white;
-}
-
-button:hover {
-    background-color: #d6d6d6;
+    gap: 1rem;
+    margin: 2rem 0;
 }
 
 .icon {
-    width: 24px;
-    height: 24px;
+    width: 20px;
+    height: 20px;
     margin-right: 1rem;
 }
 
@@ -58,30 +30,15 @@ button:hover {
     align-items: start;
 }
 
-#posts-container {
-    display: grid;
+.cards-container {
     grid-template-columns: repeat(5, 1fr);
+}
+
+h2 {
+    grid-column: span 5;
+    text-align: center;
+}
+
+.card {
     gap: 1rem;
-    margin-top: 1rem;
-}
-
-#posts-container div {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    gap: 1rem;
-    padding: 1rem;
-    background-color: #fafafa;
-    color: #424242;
-}
-
-#posts-container button {
-    width: 100%;
-    padding: 0.25rem 0.5rem;
-    border: none;
-    background-color: #eaeaea;
-}
-
-#posts-container button:hover {
-    background-color: #d6d6d6;
 }

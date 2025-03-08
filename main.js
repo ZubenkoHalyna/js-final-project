@@ -1,20 +1,21 @@
-document.addEventListener("DOMContentLoaded", async function() {
+window.addEventListener("load", async function() {
     fillUsersInfo(await fetchUsers());
 });
 
 function fillUsersInfo(users) {
     if (!users || !Array.isArray(users))
         return redirectToErrorPage("Wrong users data");
-    const container = document.getElementById('container');
+    const container = document.getElementsByClassName('cards-container')[0];
     users.forEach(user => container.appendChild(createUserCard(user)));
 }
 
 function createUserCard(user) {
     const card = document.createElement('div');
-    card.classList.add('user-card');
+    card.classList.add('card');
 
     const id = document.createElement('p');
     id.textContent = `#${user.id}`;
+    id.classList.add('secondary-text');
 
     const name = document.createElement('p');
     name.textContent = user.name;

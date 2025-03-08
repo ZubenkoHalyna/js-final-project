@@ -1,0 +1,92 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Playfair+Display:wght@700&display=swap');
+
+* {
+    font-family: "Montserrat", sans-serif;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --accent: #c54400;
+    --accent-light: #f36014;
+    --accent-secondary: #051265;
+    --accent-secondary-light: #2033a6;
+    --background: #caeaf5;
+    --disabled-dark: #696969;
+    --disabled-light: #9f9f9f;
+
+    --shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.15);
+    --accent-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.25);
+}
+
+button {
+    padding: 0.5rem 0;
+    width: 100%;
+    border: none;
+    cursor: pointer;
+    background-color: #c54400;
+    box-shadow: var(--shadow);
+    color: white;
+}
+
+button.secondary {
+    background-color: var(--accent-secondary);
+}
+
+button:hover:not(:disabled) {
+    background-color: var(--accent-light);
+    box-shadow: var(--accent-shadow);
+}
+
+button.secondary:hover {
+    background-color: var(--accent-secondary-light);
+}
+
+button:disabled {
+    cursor: auto;
+    background-color: var(--disabled-dark);
+    color: var(--disabled-light);
+}
+
+.header {
+    background-color: var(--accent-secondary);
+    color: white;
+    box-shadow: var(--shadow);
+    padding: 1rem 2rem;
+}
+
+.container {
+    margin: 1rem auto;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--background);
+    padding: 1rem;
+    min-width: 800px;
+    max-width: 80%;
+    width: fit-content;
+}
+
+.cards-container {
+    display: grid;
+    gap: 2rem;
+    grid-auto-columns: max-content;
+    margin: 1rem;
+}
+
+.card {
+    background-color: var(--background);
+    padding: 2rem;
+    box-shadow: var(--shadow);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.secondary-text {
+    color: var(--disabled-light);
+}
+
+h1, h2, h3 {
+    font-family: "Playfair Display", serif;
+}

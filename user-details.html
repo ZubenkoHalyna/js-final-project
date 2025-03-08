@@ -3,12 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <title>user-details</title>
+    <link rel="stylesheet" href="common.css">
     <link rel="stylesheet" href="user-details.css">
 </head>
 <body>
-<div id="container">
-    <div class="user-info">
-        <p id="user-id"></p>
+<div class="container">
+    <div class="header">
+        <p class="secondary-text" id="user-id"></p>
         <h1 id="user-name"></h1>
     </div>
     <div class="details">
@@ -42,7 +43,9 @@
         </div>
     </div>
     <button id="btn-posts">Show posts</button>
-    <div id="posts-container"></div>
+</div>
+<div class="cards-container" style="display: none">
+    <h2>Posts</h2>
 </div>
 
 <script src="common.js"></script>

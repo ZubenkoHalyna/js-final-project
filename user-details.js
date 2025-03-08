@@ -1,17 +1,15 @@
-document.addEventListener("DOMContentLoaded", async function () {
+window.addEventListener("load", async function () {
     const userId = getIdFromUrl('user');
     fillUserInfo(await getCachedData("user", userId, fetchUser));
 
-    const postsContainer = document.getElementById('posts-container');
+    const postsContainer = document.getElementsByClassName('cards-container')[0];
     document.getElementById('btn-posts').onclick = function () {
-        if (postsContainer.children.length === 0) {
+        if (postsContainer.children.length === 1) {
             fillPosts(userId, postsContainer);
-            this.textContent = 'Hide posts';
-        } else {
-            const isVisible = postsContainer.style.display !== 'none';
-            postsContainer.style.display = isVisible ? 'none' : 'grid';
-            this.textContent = isVisible ? 'Show posts' : 'Hide posts';
         }
+        const isVisible = postsContainer.style.display === 'grid';
+        postsContainer.style.display = isVisible ? 'none' : 'grid';
+        this.textContent = isVisible ? 'Show posts' : 'Hide posts';
     };
 });
 
@@ -31,10 +29,12 @@ async function fillPosts(userId, postsContainer) {
     const posts = await fetchUserPosts(userId);
     for (let post of posts) {
         const card = document.createElement('div');
+        card.classList.add('card');
         const title = document.createElement('p');
         title.innerText = post.title;
 
         const button = document.createElement('button');
+        button.classList.add('secondary');
         button.textContent = 'Details';
         button.onclick = () => postDetailsClick(post);
         card.append(title, button);
