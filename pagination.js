@@ -7,6 +7,7 @@ function fillPage(maxPage, fillCurrentPage) {
     btnNext.onclick = () => showNewPage(currentPage + 1);
 
     const dots = document.getElementsByClassName('dots')[0];
+    dots.innerText = '';
     for (let i = 0; i < maxPage; i++) {
         const dot = document.createElement('div');
         dot.classList.add('dot');
@@ -23,6 +24,8 @@ function fillPage(maxPage, fillCurrentPage) {
 
     fillCurrentPage(currentPage);
     setActiveDot();
+    btnNext.disabled = currentPage === maxPage;
+    btnPrevious.disabled = currentPage === 1;
 
     function showNewPage(newPage) {
         const scrollMaxY = document.documentElement.scrollHeight - document.documentElement.clientHeight;
@@ -42,6 +45,18 @@ function addPagination(data, itemsPerPage, createCard) {
     const cacheViews = new Map();
     fillPage(Math.round(Math.ceil(data.length / itemsPerPage)), fillContainer);
 
+    const input = document.getElementById('cards-per-page');
+    input.value = itemsPerPage;
+    input.onchange = function (e) {
+        const value = input.value;
+        if (value < 1 || value > 6) {
+            this.value = itemsPerPage;
+            return;
+        }
+        itemsPerPage = this.value;
+        fillPage(Math.round(Math.ceil(data.length / itemsPerPage)), fillContainer);
+    }
+
     function fillContainer(currentPage) {
         const startN = (currentPage - 1) * itemsPerPage;
         const endN = Math.min(currentPage * itemsPerPage, data.length);
@@ -52,6 +67,7 @@ function addPagination(data, itemsPerPage, createCard) {
                 card = createCard(data[i]);
                 cacheViews[data[i].id] = card;
             }
+            card.style['max-width'] = 100 / itemsPerPage + '%'
             container.appendChild(card);
         }
     }

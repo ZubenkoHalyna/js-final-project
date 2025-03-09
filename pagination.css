@@ -1,5 +1,6 @@
 h2 {
     text-align: center;
+    flex-grow: 1;
 }
 
 .cards-area {
@@ -42,14 +43,32 @@ h2 {
 
 .cards-area .dots {
     display: flex;
-    gap: 0.5rem;
+    gap: 1rem;
     width: fit-content;
     align-self: center;
 }
 
+.cards-area > div:first-of-type {
+    padding: 0 3.75rem;
+    align-items: flex-end;
+}
+
+input {
+    background-color: var(--background);
+    border: none;
+    padding: 0.5rem 0.5rem;
+    margin-left: 0.5rem;
+    box-shadow: var(--shadow);
+}
+
+label {
+    position: absolute;
+    right: 4.75rem;
+}
+
 .dot {
-    width: 0.5rem;
-    height: 0.5rem;
+    width: 0.75rem;
+    height: 0.75rem;
     border-radius: 50%;
     background-color: var(--disabled-light);
     box-shadow: var(--shadow);

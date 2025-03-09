@@ -4,9 +4,9 @@ window.addEventListener("load", async function () {
 
     const postsContainer = document.getElementsByClassName('cards-container')[0];
     const postsView = document.getElementsByClassName('cards-area')[0];
-    document.getElementById('btn-posts').onclick = function () {
+    document.getElementById('btn-posts').onclick = async function () {
         if (postsContainer.children.length === 0) {
-            fillPosts(userId, postsContainer);
+            addPagination(await fetchUserPosts(userId), 5, createPostCard);
         }
         const isVisible = postsView.style.display !== 'none';
         postsView.style.display = isVisible ? 'none' : 'flex';
@@ -24,10 +24,6 @@ function fillUserInfo(user) {
     document.getElementById('gps').innerText = `${user.address.geo.lat}, ${user.address.geo.lng}`;
     appendFields(user.address, document.getElementById('location'));
     appendFields(user.company, document.getElementById('company'));
-}
-
-async function fillPosts(userId, postsContainer) {
-    addPagination(await fetchUserPosts(userId), 5, createPostCard);
 }
 
 function createPostCard(post) {

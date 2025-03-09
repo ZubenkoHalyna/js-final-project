@@ -46,7 +46,12 @@
     <button id="btn-posts">Show posts</button>
 </div>
 <div class="cards-area" style="display: none">
-    <h2>Posts</h2>
+    <div>
+        <h2>Posts</h2>
+        <label for="cards-per-page"> per page
+            <input id="cards-per-page" type="number" max="6" min="1">
+        </label>
+    </div>
     <div>
         <button id="pgn-btn-previous" disabled>◀</button>
         <div class="cards-container">
