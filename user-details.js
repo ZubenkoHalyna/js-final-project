@@ -3,12 +3,13 @@ window.addEventListener("load", async function () {
     fillUserInfo(await getCachedData("user", userId, fetchUser));
 
     const postsContainer = document.getElementsByClassName('cards-container')[0];
+    const postsView = document.getElementsByClassName('cards-area')[0];
     document.getElementById('btn-posts').onclick = function () {
-        if (postsContainer.children.length === 1) {
+        if (postsContainer.children.length === 0) {
             fillPosts(userId, postsContainer);
         }
-        const isVisible = postsContainer.style.display === 'grid';
-        postsContainer.style.display = isVisible ? 'none' : 'grid';
+        const isVisible = postsView.style.display !== 'none';
+        postsView.style.display = isVisible ? 'none' : 'flex';
         this.textContent = isVisible ? 'Show posts' : 'Hide posts';
     };
 });
@@ -26,20 +27,21 @@ function fillUserInfo(user) {
 }
 
 async function fillPosts(userId, postsContainer) {
-    const posts = await fetchUserPosts(userId);
-    for (let post of posts) {
-        const card = document.createElement('div');
-        card.classList.add('card');
-        const title = document.createElement('p');
-        title.innerText = post.title;
+    addPagination(await fetchUserPosts(userId), 5, createPostCard);
+}
 
-        const button = document.createElement('button');
-        button.classList.add('secondary');
-        button.textContent = 'Details';
-        button.onclick = () => postDetailsClick(post);
-        card.append(title, button);
-        postsContainer.appendChild(card);
-    }
+function createPostCard(post) {
+    const card = document.createElement('div');
+    card.classList.add('card');
+    const title = document.createElement('p');
+    title.innerText = post.title;
+
+    const button = document.createElement('button');
+    button.classList.add('secondary');
+    button.textContent = 'Details';
+    button.onclick = () => postDetailsClick(post);
+    card.append(title, button);
+    return card;
 }
 
 function postDetailsClick(post) {

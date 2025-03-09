@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Post details</title>
     <link rel="stylesheet" href="common.css">
+    <link rel="stylesheet" href="pagination.css">
     <link rel="stylesheet" href="post-details.css">
 </head>
 <body>
@@ -26,11 +27,29 @@
         <button id="btn-next">Next</button>
     </div>
 </div>
-<div class="cards-container">
+
+<!--<div class="cards-area">-->
+<!--    <h2>Comments</h2>-->
+<!--    <div class="cards-container"></div>-->
+<!--    <div>-->
+<!--        <button id="pgn-btn-previous" disabled>◀</button>-->
+<!--        <div class="dots"></div>-->
+<!--        <button id="pgn-btn-next">▶</button>-->
+<!--    </div>-->
+<!--</div>-->
+<div class="cards-area">
     <h2>Comments</h2>
+    <div>
+        <button id="pgn-btn-previous" disabled>◀</button>
+        <div class="cards-container">
+        </div>
+        <button id="pgn-btn-next">▶</button>
+    </div>
+    <div class="dots"></div>
 </div>
 
 <script src="common.js"></script>
+<script src="pagination.js"></script>
 <script src="post-details.js"></script>
 </body>
 </html>

@@ -65,7 +65,6 @@ button:disabled {
     padding: 1rem;
     min-width: 800px;
     max-width: 80%;
-    width: fit-content;
 }
 
 .cards-container {

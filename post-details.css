@@ -1,6 +1,7 @@
 h1 {
     text-transform: capitalize;
     line-height: 100%;
+    margin-bottom: 0.5rem;
 }
 
 h2 {
@@ -29,12 +30,9 @@ h3 {
     align-items: baseline;
 }
 
-.cards-container {
-    grid-template-columns: repeat(4, 1fr);
-}
-
 .card {
     justify-content: start;
+    max-width: 25%;
 }
 
 .card .author {

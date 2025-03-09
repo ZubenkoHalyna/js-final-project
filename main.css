@@ -4,6 +4,7 @@ h1 {
 
 .container {
     background-color: unset;
+    width: fit-content;
 }
 
 .cards-container {

@@ -12,7 +12,7 @@ window.onload = function () {
         .then(user => fillUserInfo(user))
         .catch(error => redirectToErrorPage(error));
 
-    fetchComments(postId).then(comments => fillCommentsInfo(comments));
+    fetchComments(postId).then(comments => addPagination(comments, 4, createCommentCard));
 }
 
 function fillPostInfo(post) {
@@ -40,8 +40,22 @@ function fillUserInfo(user) {
 }
 
 function fillCommentsInfo(comments) {
+    const commentsViews = new Map();
     const commentsContainer = document.getElementsByClassName('cards-container')[0];
-    comments?.forEach(comment => commentsContainer.appendChild(createCommentCard(comment)));
+    let maxViewHeight = 0;
+    fillPage(commentsContainer, comments, 4, fill);
+
+    function fill(startN, endN) {
+        commentsContainer.innerHTML = '';
+        for (let i = startN; i < endN; i++) {
+            const card = commentsViews[comments[i].id] || createCommentCard(comments[i], commentsViews);
+            commentsContainer.appendChild(card);
+            if (card.offsetHeight > maxViewHeight) {
+                maxViewHeight = card.offsetHeight;
+                commentsContainer.style['min-height'] = maxViewHeight + 'px';
+            }
+        }
+    }
 }
 
 function createCommentCard(comment) {
@@ -55,11 +69,11 @@ function createCommentCard(comment) {
     const author = document.createElement('div');
     author.classList.add('secondary-text');
     author.classList.add('author');
-    const p = document.createElement('span');
+    const span = document.createElement('span');
     const email = document.createElement('div');
-    p.innerText = 'By';
+    span.innerText = 'By';
     email.innerText = comment.email;
-    author.append(p, email);
+    author.append(span, email);
 
     const body = document.createElement('p');
     body.classList.add('comment-body');
@@ -68,5 +82,6 @@ function createCommentCard(comment) {
     const card = document.createElement('div');
     card.classList.add('card');
     card.append(id, title, author, body);
+
     return card;
 }

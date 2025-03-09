@@ -1,6 +1,7 @@
 .container {
     padding: 2rem 5% 2rem 5%;
-    gap: 2rem
+    gap: 2rem;
+    margin-bottom: 0;
 }
 
 .details {
@@ -24,19 +25,7 @@
     align-items: start;
 }
 
-.cards-container {
-    grid-template-columns: repeat(5, 1fr);
-}
-
-h2 {
-    grid-column: span 5;
-    text-align: center;
-}
-
 .card {
+    max-width: 20%;
     gap: 1rem;
-}
-
-.card p {
-    text-transform: capitalize;
 }

@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>user-details</title>
     <link rel="stylesheet" href="common.css">
+    <link rel="stylesheet" href="pagination.css">
     <link rel="stylesheet" href="user-details.css">
 </head>
 <body>
@@ -44,11 +45,28 @@
     </div>
     <button id="btn-posts">Show posts</button>
 </div>
-<div class="cards-container" style="display: none">
+<div class="cards-area" style="display: none">
     <h2>Posts</h2>
+    <div>
+        <button id="pgn-btn-previous" disabled>◀</button>
+        <div class="cards-container">
+        </div>
+        <button id="pgn-btn-next">▶</button>
+    </div>
+    <div class="dots"></div>
 </div>
+<!--<div class="cards-area" style="display: none">-->
+<!--    <h2>Posts</h2>-->
+<!--    <div class="cards-container"></div>-->
+<!--    <div>-->
+<!--        <button id="pgn-btn-previous" disabled>◀</button>-->
+<!--        <div class="dots"></div>-->
+<!--        <button id="pgn-btn-next">▶</button>-->
+<!--    </div>-->
+<!--</div>-->
 
 <script src="common.js"></script>
+<script src="pagination.js"></script>
 <script src="user-details.js"></script>
 </body>
 </html>
