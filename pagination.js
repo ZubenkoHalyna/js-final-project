@@ -47,7 +47,7 @@ function addPagination(data, itemsPerPage, createCard) {
 
     const input = document.getElementById('cards-per-page');
     input.value = itemsPerPage;
-    input.onchange = function (e) {
+    input.onchange = function () {
         const value = input.value;
         if (value < 1 || value > 6) {
             this.value = itemsPerPage;
