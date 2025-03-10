@@ -21,12 +21,15 @@ function managePages(maxPage, fillCurrentPage) {
     btnPrevious.disabled = currentPage === 1;
 
     function showNewPage(newPage) {
-        dots.children[currentPage - 1].classList.remove('active');
-        currentPage = newPage;
-        dots.children[currentPage - 1].classList.add('active');
-        btnNext.disabled = currentPage === maxPage;
-        btnPrevious.disabled = currentPage === 1;
-        fillCurrentPage(currentPage);
+        console.log(newPage, currentPage);
+        if (currentPage !== newPage) {
+            dots.children[currentPage - 1].classList.remove('active');
+            currentPage = newPage;
+            dots.children[currentPage - 1].classList.add('active');
+            btnNext.disabled = currentPage === maxPage;
+            btnPrevious.disabled = currentPage === 1;
+            fillCurrentPage(currentPage);
+        }
     }
 }
 

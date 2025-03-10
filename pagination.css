@@ -81,4 +81,5 @@ label {
 
 .dot.active {
     background-color: var(--accent-light);
+    cursor: unset;
 }
