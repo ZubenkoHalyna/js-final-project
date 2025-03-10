@@ -22,12 +22,12 @@ function getIdFromUrl(objName) {
 }
 
 async function getCachedData(key, id, fetchCall) {
-    const cachedObj = JSON.parse(localStorage.getItem(key));
+    const cachedObj = getFromCache(key);
     if (cachedObj && cachedObj.id === id) {
         return cachedObj;
     } else {
         return fetchCall(id).then(value => {
-            localStorage.setItem(key, JSON.stringify(value));
+            addToCache(key, value);
             return value;
         });
     }
@@ -35,5 +35,9 @@ async function getCachedData(key, id, fetchCall) {
 
 function addToCache(key, value) {
     localStorage.setItem(key, JSON.stringify(value));
+}
+
+function getFromCache(key) {
+    return JSON.parse(localStorage.getItem(key));
 }
 

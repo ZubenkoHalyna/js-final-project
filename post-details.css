@@ -5,12 +5,18 @@ h1 {
 }
 
 h2 {
-    grid-column: span 4;
     text-align: center;
 }
 
 h3 {
     text-transform: capitalize;
+}
+
+h3:empty::before {
+    /* To prevent content jumps while loading,
+    and take into account align-items: baseline; */
+    content: 'Skeleton';
+    color: transparent;
 }
 
 .buttons {
@@ -28,6 +34,7 @@ h3 {
     gap: 0.5rem;
     margin-left: 2rem;
     align-items: baseline;
+    min-height: 1.55rem;
 }
 
 .card {
@@ -41,17 +48,36 @@ h3 {
     gap: 0.5rem;
 }
 
-.cards-container .author div {
+#cards-container {
+    height: 400px;
+}
+
+#cards-container .author div {
     word-break: break-all;
+}
+
+.header {
+    min-height: 7.7rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 #post-body {
     line-height: 1.2rem;
     padding-top: 1rem;
+    min-height: 6.7rem;
 }
 
 #post-body::first-letter {
     font-size: 350%;
     text-transform: capitalize;
     color: var(--accent);
+}
+
+.comment-body {
+    overflow-y: auto;
+    scrollbar-width: thin;
+    padding-right: 0.5rem;
+    scrollbar-color: var(--disabled-light) var(--background);
 }

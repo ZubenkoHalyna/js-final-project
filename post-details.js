@@ -41,9 +41,9 @@ function fillUserInfo(user) {
 
 function fillCommentsInfo(comments) {
     const commentsViews = new Map();
-    const commentsContainer = document.getElementsByClassName('cards-container')[0];
+    const commentsContainer = document.getElementById('cards-container');
     let maxViewHeight = 0;
-    fillPage(commentsContainer, comments, 4, fill);
+    managePages(commentsContainer, comments, 4, fill);
 
     function fill(startN, endN) {
         commentsContainer.innerHTML = '';

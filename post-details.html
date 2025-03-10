@@ -28,29 +28,20 @@
     </div>
 </div>
 
-<!--<div class="cards-area">-->
-<!--    <h2>Comments</h2>-->
-<!--    <div class="cards-container"></div>-->
-<!--    <div>-->
-<!--        <button id="pgn-btn-previous" disabled>◀</button>-->
-<!--        <div class="dots"></div>-->
-<!--        <button id="pgn-btn-next">▶</button>-->
-<!--    </div>-->
-<!--</div>-->
-<div class="cards-area">
+<div id="cards-area">
     <div>
-    <h2>Comments</h2>
-    <label for="cards-per-page"> per page
-        <input id="cards-per-page" type="number" max="6" min="1">
-    </label>
-</div>
-    <div>
+        <h2>Comments</h2>
+        <label for="cards-per-page"> per page
+            <input id="cards-per-page" type="number" max="6" min="1">
+        </label>
+    </div>
+    <div class="main-block">
         <button id="pgn-btn-previous" disabled>◀</button>
-        <div class="cards-container">
+        <div id="cards-container">
         </div>
         <button id="pgn-btn-next">▶</button>
     </div>
-    <div class="dots"></div>
+    <div id="dots"></div>
 </div>
 
 <script src="common.js"></script>

@@ -5,7 +5,7 @@ window.addEventListener("load", async function() {
 function fillUsersInfo(users) {
     if (!users || !Array.isArray(users))
         return redirectToErrorPage("Wrong users data");
-    const container = document.getElementsByClassName('cards-container')[0];
+    const container = document.getElementById('cards-container');
     users.forEach(user => container.appendChild(createUserCard(user)));
 }
 

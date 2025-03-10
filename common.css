@@ -55,6 +55,17 @@ button:disabled {
     color: white;
     box-shadow: var(--shadow);
     padding: 1rem 2rem;
+    min-height: 7.7rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+h1 {
+    text-transform: capitalize;
+    line-height: 100%;
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.2px;
 }
 
 .container {
@@ -67,7 +78,7 @@ button:disabled {
     max-width: 80%;
 }
 
-.cards-container {
+#cards-container {
     display: grid;
     gap: 2rem;
     grid-auto-columns: max-content;

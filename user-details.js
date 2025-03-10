@@ -2,8 +2,8 @@ window.addEventListener("load", async function () {
     const userId = getIdFromUrl('user');
     fillUserInfo(await getCachedData("user", userId, fetchUser));
 
-    const postsContainer = document.getElementsByClassName('cards-container')[0];
-    const postsView = document.getElementsByClassName('cards-area')[0];
+    const postsContainer = document.getElementById('cards-container');
+    const postsView = document.getElementById('cards-area');
     document.getElementById('btn-posts').onclick = async function () {
         if (postsContainer.children.length === 0) {
             addPagination(await fetchUserPosts(userId), 5, createPostCard);
