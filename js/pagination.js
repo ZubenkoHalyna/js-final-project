@@ -35,9 +35,10 @@ function managePages(maxPage, fillPage) {
 function addPagination(data, itemsPerPageDefault, createCard) {
     const container = document.getElementById('cards-container');
     const cacheViews = new Map();
-    let itemsPerPage = getFromCache('itemsPerPage' + window.location.pathname) || itemsPerPageDefault;
+    const perPageSettingKey = `itemsPerPage${window.location.pathname}`;
+    let itemsPerPage = getFromCache(perPageSettingKey) || itemsPerPageDefault;
     let maxItemWidth = calcMaxItemWidth();
-    managePages(Math.round(Math.ceil(data.length / itemsPerPage)), fillContainer);
+    managePages(calcMaxPages(), fillContainer);
 
     const input = document.getElementById('cards-per-page');
     input.value = itemsPerPage;
@@ -48,9 +49,9 @@ function addPagination(data, itemsPerPageDefault, createCard) {
             return;
         }
         itemsPerPage = this.value;
-        addToCache('itemsPerPage' + window.location.pathname, itemsPerPage);
+        addToCache(perPageSettingKey, itemsPerPage);
         maxItemWidth = calcMaxItemWidth();
-        managePages(Math.round(Math.ceil(data.length / itemsPerPage)), fillContainer);
+        managePages(calcMaxPages(), fillContainer);
     }
 
     function fillContainer(pageNumber) {
@@ -59,17 +60,21 @@ function addPagination(data, itemsPerPageDefault, createCard) {
 
         container.innerHTML = '';
         for (let i = startN; i < endN; i++) {
-            let card = cacheViews[data[i].id];
-            if (!card) {
-                card = createCard(data[i]);
-                cacheViews[data[i].id] = card;
+            let view = cacheViews[data[i].id];
+            if (!view) {
+                view = createCard(data[i]);
+                cacheViews[data[i].id] = view;
             }
-            card.style['max-width'] = maxItemWidth;
-            container.appendChild(card);
+            view.style['max-width'] = maxItemWidth;
+            container.appendChild(view);
         }
     }
 
     function calcMaxItemWidth() {
         return 100 / itemsPerPage + '%';
+    }
+
+    function calcMaxPages() {
+        return Math.round(Math.ceil(data.length / itemsPerPage));
     }
 }
