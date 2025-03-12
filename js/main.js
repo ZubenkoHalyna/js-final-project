@@ -30,5 +30,6 @@ function createUserCard(user) {
 
 function userDetailsClick(user) {
     addToCache('user', user);
-    window.location.href = `user-details.html?userId=${user.id}`;
+    const params = new URLSearchParams({userId: user.id});
+    window.location.href = `user-details.html?${params}`;
 }

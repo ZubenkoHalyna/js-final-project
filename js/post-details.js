@@ -3,8 +3,8 @@ window.onload = function () {
 
     getCachedData("post", postId, fetchPost)
         .then(post => {
-            if (!Number.isInteger(post.userId))
-                return Promise.reject("Wrong post data");
+            if (!Number.isInteger(post?.userId))
+                return Promise.reject(`Wrong post data, post id: ${postId}, user id: ${post?.userId}`);
             const userPromise = getCachedData("user", post.userId, fetchUser);
             fillPostInfo(post);
             return userPromise;
@@ -13,9 +13,6 @@ window.onload = function () {
         .catch(error => redirectToErrorPage(error));
 
     fetchComments(postId).then(comments => addPagination(comments, 4, createCommentCard));
-
-    const usersLink = document.getElementById('users-link');
-    usersLink.href = 'index.html';
 }
 
 function fillPostInfo(post) {
@@ -24,16 +21,17 @@ function fillPostInfo(post) {
     document.getElementById('post-body').innerText = post.body;
 
     const next = document.getElementById('btn-next');
-    if (post.id === 100) next.disabled = true;
+    next.disabled = post.id === 100;
     next.onclick = () => showNewPost(post.id + 1);
 
     const previous = document.getElementById('btn-previous');
-    if (post.id === 1) previous.disabled = true;
+    previous.disabled = post.id === 1;
     previous.onclick = () => showNewPost(post.id - 1);
 }
 
 function showNewPost(postId) {
-    window.location.href = `post-details.html?postId=${postId}`;
+    const params = new URLSearchParams({postId: postId});
+    window.location.href = `post-details.html?${params}`;
 }
 
 function fillUserInfo(user) {
@@ -42,7 +40,8 @@ function fillUserInfo(user) {
     document.getElementById('user-full-name').innerText = user.name;
 
     const usersLink = document.getElementById('user-details-link');
-    usersLink.href = 'user-details.html?userId=' + user.id;
+    const params = new URLSearchParams({userId: user.id});
+    usersLink.href = `user-details.html?${params}`;
 }
 
 function createCommentCard(comment) {

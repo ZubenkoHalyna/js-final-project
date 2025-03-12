@@ -12,9 +12,6 @@ window.addEventListener("load", async function () {
         postsView.style.display = isVisible ? 'none' : 'flex';
         this.textContent = isVisible ? 'Show posts' : 'Hide posts';
     };
-
-    const usersLink = document.getElementById('users-link');
-    usersLink.href = 'index.html';
 });
 
 function fillUserInfo(user) {
@@ -45,7 +42,8 @@ function createPostCard(post) {
 
 function postDetailsClick(post) {
     addToCache('post', post);
-    window.location.href = `post-details.html?postId=${post.id}`;
+    const params = new URLSearchParams({postId: post.id});
+    window.location.href = `post-details.html?${params}`;
 }
 
 function appendFields(obj, container) {

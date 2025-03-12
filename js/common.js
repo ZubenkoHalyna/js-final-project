@@ -1,5 +1,6 @@
 function redirectToErrorPage(msg) {
-    window.location.href = `error.html?error=${msg}`
+    const params = new URLSearchParams({error: msg});
+    window.location.href = `error.html?${params}`
 }
 
 async function fetchData(url) {
