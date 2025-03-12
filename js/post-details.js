@@ -45,25 +45,6 @@ function fillUserInfo(user) {
     usersLink.href = 'user-details.html?userId=' + user.id;
 }
 
-function fillCommentsInfo(comments) {
-    const commentsViews = new Map();
-    const commentsContainer = document.getElementById('cards-container');
-    let maxViewHeight = 0;
-    managePages(commentsContainer, comments, 4, fill);
-
-    function fill(startN, endN) {
-        commentsContainer.innerHTML = '';
-        for (let i = startN; i < endN; i++) {
-            const card = commentsViews[comments[i].id] || createCommentCard(comments[i], commentsViews);
-            commentsContainer.appendChild(card);
-            if (card.offsetHeight > maxViewHeight) {
-                maxViewHeight = card.offsetHeight;
-                commentsContainer.style['min-height'] = maxViewHeight + 'px';
-            }
-        }
-    }
-}
-
 function createCommentCard(comment) {
     const id = document.createElement('p');
     id.innerText = `#${comment.id}`;
