@@ -1,5 +1,5 @@
-function managePages(maxPage, fillCurrentPage) {
-    let currentPage = 1;
+function managePages(maxPage, fillPage) {
+    let currentPage = 0;
     const btnPrevious = document.getElementById('pgn-btn-previous');
     btnPrevious.onclick = () => showNewPage(currentPage - 1);
 
@@ -12,23 +12,22 @@ function managePages(maxPage, fillCurrentPage) {
         const dot = document.createElement('div');
         dot.classList.add('dot');
         dots.appendChild(dot);
-        dot.onclick = () => showNewPage(i + 1);
+        dot.onclick = () => showNewPage(i);
     }
 
-    fillCurrentPage(currentPage);
+    fillPage(currentPage);
     dots.children[0].classList.add('active');
-    btnNext.disabled = currentPage === maxPage;
-    btnPrevious.disabled = currentPage === 1;
+    btnNext.disabled = currentPage === maxPage - 1;
+    btnPrevious.disabled = currentPage === 0;
 
     function showNewPage(newPage) {
-        console.log(newPage, currentPage);
         if (currentPage !== newPage) {
-            dots.children[currentPage - 1].classList.remove('active');
+            dots.children[currentPage].classList.remove('active');
+            dots.children[newPage].classList.add('active');
             currentPage = newPage;
-            dots.children[currentPage - 1].classList.add('active');
-            btnNext.disabled = currentPage === maxPage;
-            btnPrevious.disabled = currentPage === 1;
-            fillCurrentPage(currentPage);
+            btnNext.disabled = currentPage === maxPage - 1;
+            btnPrevious.disabled = currentPage === 0;
+            fillPage(currentPage);
         }
     }
 }
@@ -55,8 +54,8 @@ function addPagination(data, itemsPerPageDefault, createCard) {
     }
 
     function fillContainer(pageNumber) {
-        const startN = (pageNumber - 1) * itemsPerPage;
-        const endN = Math.min(pageNumber * itemsPerPage, data.length);
+        const startN = pageNumber * itemsPerPage;
+        const endN = Math.min((pageNumber + 1) * itemsPerPage, data.length);
 
         container.innerHTML = '';
         for (let i = startN; i < endN; i++) {
