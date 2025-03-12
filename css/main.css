@@ -5,10 +5,13 @@ h1 {
 .container {
     background-color: unset;
     width: fit-content;
+    padding: 0;
 }
 
 #cards-container {
+    display: grid;
     grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
     margin: 1rem 0;
 }
 

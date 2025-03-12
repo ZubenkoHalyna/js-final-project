@@ -13,6 +13,9 @@ window.onload = function () {
         .catch(error => redirectToErrorPage(error));
 
     fetchComments(postId).then(comments => addPagination(comments, 4, createCommentCard));
+
+    const usersLink = document.getElementById('users-link');
+    usersLink.href = 'index.html';
 }
 
 function fillPostInfo(post) {
@@ -36,7 +39,10 @@ function showNewPost(postId) {
 function fillUserInfo(user) {
     document.getElementById('user-id').innerText = `#${user.id}`;
     document.getElementById('username').innerText = `@${user.username}`;
-    document.getElementById('user-full-name').innerText = user.name //+ ` - @${user.username}`;
+    document.getElementById('user-full-name').innerText = user.name;
+
+    const usersLink = document.getElementById('user-details-link');
+    usersLink.href = 'user-details.html?userId=' + user.id;
 }
 
 function fillCommentsInfo(comments) {

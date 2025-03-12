@@ -12,6 +12,9 @@ window.addEventListener("load", async function () {
         postsView.style.display = isVisible ? 'none' : 'flex';
         this.textContent = isVisible ? 'Show posts' : 'Hide posts';
     };
+
+    const usersLink = document.getElementById('users-link');
+    usersLink.href = 'index.html';
 });
 
 function fillUserInfo(user) {

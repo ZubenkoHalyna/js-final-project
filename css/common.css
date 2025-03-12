@@ -3,6 +3,8 @@
 * {
     font-family: "Montserrat", sans-serif;
     box-sizing: border-box;
+    text-decoration: none;
+    list-style-type: none;
     margin: 0;
     padding: 0;
 }
@@ -78,11 +80,19 @@ h1 {
     max-width: 80%;
 }
 
-#cards-container {
-    display: grid;
-    gap: 2rem;
-    grid-auto-columns: max-content;
-    margin: 1rem;
+.breadcrumbs {
+    display: flex;
+    gap: 0.5rem;
+    color: var(--disabled-light);
+}
+
+.breadcrumbs li:not(:last-child)::after {
+    content: " > ";
+    margin: 0 0.5rem;
+}
+
+a {
+    color: var(--accent-secondary);
 }
 
 .card {

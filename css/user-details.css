@@ -31,8 +31,11 @@
     gap: 1rem;
 }
 
+#cards-container {
+    height: 14rem;
+}
+
 .card p {
-    height: 7.2rem;
     overflow-y: auto;
     scrollbar-width: thin;
     padding-right: 0.5rem;

@@ -31,19 +31,19 @@ h2 {
 
 #cards-container {
     display: flex;
-    flex-direction: row;
     align-items: stretch;
+    gap: 2rem;
     justify-content: flex-start;
     margin: 0;
     flex-grow: 1;
 }
 
-.card p {
-    text-transform: capitalize;
-}
-
 .card {
     flex: 1 0 0;
+}
+
+.card p {
+    text-transform: capitalize;
 }
 
 input {

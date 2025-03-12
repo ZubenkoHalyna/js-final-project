@@ -3,12 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <title>Post details</title>
-    <link rel="stylesheet" href="common.css">
-    <link rel="stylesheet" href="pagination.css">
-    <link rel="stylesheet" href="post-details.css">
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/pagination.css">
+    <link rel="stylesheet" href="css/post-details.css">
 </head>
 <body>
 <div class="container">
+    <ul class="breadcrumbs">
+        <li><a id="users-link">Users</a></li>
+        <li><a id="user-details-link">User Details</a></li>
+        <li><span>Post Details</span></li>
+    </ul>
     <div class="header">
         <p class="secondary-text" id="post-id"></p>
         <h1 id="post-title"></h1>
@@ -16,10 +21,8 @@
     <div class="author-info">
         <span>By</span>
         <h3 id="user-full-name"></h3>
-        <span class="secondary-text">-</span>
-        <p id="username" class="secondary-text"></p>
-        <span class="secondary-text">-</span>
-        <p id="user-id" class="secondary-text"></p>
+        <span id="username" class="secondary-text"></span>
+        <span id="user-id" class="secondary-text"></span>
     </div>
     <p id="post-body"></p>
     <div class="buttons">
@@ -44,8 +47,8 @@
     <div id="dots"></div>
 </div>
 
-<script src="common.js"></script>
-<script src="pagination.js"></script>
-<script src="post-details.js"></script>
+<script src="js/common.js"></script>
+<script src="js/pagination.js"></script>
+<script src="js/post-details.js"></script>
 </body>
 </html>

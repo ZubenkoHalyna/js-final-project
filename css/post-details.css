@@ -19,22 +19,30 @@ h3:empty::before {
     color: transparent;
 }
 
-.buttons {
-    display: flex;
-    gap: 1rem;
-}
-
-.container {
-    gap: 1rem;
-    padding: 2rem;
-}
-
 .author-info {
     display: flex;
     gap: 0.5rem;
     margin-left: 2rem;
     align-items: baseline;
-    min-height: 1.55rem;
+}
+
+.author-info .secondary-text::before {
+    content: "-";
+    margin: 0 0.5rem 0 0;
+}
+
+.buttons {
+    display: flex;
+    gap: 1rem;
+}
+
+.breadcrumbs {
+    margin-bottom: 1rem;
+}
+
+.container {
+    gap: 1rem;
+    padding: 2rem;
 }
 
 .card {
@@ -49,7 +57,7 @@ h3:empty::before {
 }
 
 #cards-container {
-    height: 400px;
+    height: 25rem;
 }
 
 #cards-container .author div {
