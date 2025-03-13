@@ -17,8 +17,9 @@ const fetchComments = (postId) => fetchData(`https://jsonplaceholder.typicode.co
 
 function getIdFromUrl(objName) {
     const searchParams = new URLSearchParams(window.location.search);
-    const id = +searchParams.get(`${objName}Id`);
-    if (!id || !Number.isInteger(id)) redirectToErrorPage(`Incorrect ${objName} id`);
+    const idStr = searchParams.get(`${objName}Id`);
+    const id = +idStr;
+    if (!id || !Number.isInteger(id)) redirectToErrorPage(`Incorrect ${objName} id: ${idStr}`);
     return id;
 }
 
@@ -41,4 +42,3 @@ function addToCache(key, value) {
 function getFromCache(key) {
     return JSON.parse(localStorage.getItem(key));
 }
-

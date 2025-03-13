@@ -16,7 +16,7 @@ function managePages(maxPage, fillPage) {
     }
 
     fillPage(currentPage);
-    dots.children[0].classList.add('active');
+    dots.children[currentPage].classList.add('active');
     btnNext.disabled = currentPage === maxPage - 1;
     btnPrevious.disabled = currentPage === 0;
 
@@ -34,13 +34,13 @@ function managePages(maxPage, fillPage) {
 
 function addPagination(data, itemsPerPageDefault, createCard) {
     const container = document.getElementById('cards-container');
-    const cacheViews = new Map();
+    const cardsCache = new Map();
     const perPageSettingKey = `itemsPerPage${window.location.pathname}`;
     let itemsPerPage = getFromCache(perPageSettingKey) || itemsPerPageDefault;
     let maxItemWidth = calcMaxItemWidth();
     managePages(calcMaxPages(), fillContainer);
 
-    const input = document.getElementById('cards-per-page');
+    const input = document.getElementById('inp-cards-per-page');
     input.value = itemsPerPage;
     input.onchange = function () {
         const value = input.value;
@@ -60,13 +60,13 @@ function addPagination(data, itemsPerPageDefault, createCard) {
 
         container.innerHTML = '';
         for (let i = startN; i < endN; i++) {
-            let view = cacheViews[data[i].id];
-            if (!view) {
-                view = createCard(data[i]);
-                cacheViews[data[i].id] = view;
+            let card = cardsCache[data[i].id];
+            if (!card) {
+                card = createCard(data[i]);
+                cardsCache[data[i].id] = card;
             }
-            view.style['max-width'] = maxItemWidth;
-            container.appendChild(view);
+            card.style['max-width'] = maxItemWidth;
+            container.appendChild(card);
         }
     }
 

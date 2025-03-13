@@ -30,6 +30,7 @@ function createPostCard(post) {
     const card = document.createElement('div');
     card.classList.add('card');
     const title = document.createElement('p');
+    title.classList.add('scrollable');
     title.innerText = post.title;
 
     const button = document.createElement('button');

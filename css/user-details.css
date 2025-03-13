@@ -1,7 +1,5 @@
 .container {
-    padding: 2rem 5% 2rem 5%;
-    gap: 2rem;
-    margin-bottom: 0;
+    padding: 2rem 5%;
 }
 
 .details {
@@ -11,14 +9,14 @@
 }
 
 .icon {
-    width: 20px;
-    height: 20px;
-    margin-right: 1rem;
+    width: 1.25rem;
+    height: 1.25rem;
 }
 
 .wrap {
     display: flex;
     align-items: center;
+    gap: 1rem;
 }
 
 .wrap.multi-line {
@@ -26,22 +24,12 @@
     min-height: 6rem;
 }
 
-.card {
-    max-width: 20%;
-    gap: 1rem;
-}
-
 #cards-container {
-    height: 14rem;
+    height: 14.2rem;
 }
 
-.card p {
-    overflow-y: auto;
-    scrollbar-width: thin;
-    padding-right: 0.5rem;
-    scrollbar-color: var(--disabled-light) var(--background);
-}
-
-.header {
-    min-height: 5.85rem;
+.card {
+    gap: 1rem;
+    text-transform: capitalize;
+    justify-content: space-between;
 }

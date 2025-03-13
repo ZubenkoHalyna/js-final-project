@@ -1,55 +1,52 @@
 h2 {
     text-align: center;
-    flex-grow: 1;
+    flex: 1 0 0;
 }
 
 #cards-area {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 2rem;
     width: 100%;
-    padding: 1rem;
-    justify-content: flex-end;
+    padding: 2rem 1rem;
 }
 
 #cards-area .main-block {
     display: flex;
-    justify-content: space-between;
     gap: 2rem;
     width: 100%;
 }
 
 #cards-area .main-block > button {
-    width: 2rem;
-    padding: 0.5rem;
+    flex: 0 0 2rem;
 }
 
 #cards-area > div:first-child {
     display: flex;
-    flex-direction: row;
 }
 
 #cards-container {
+    width: 100%;
     display: flex;
-    align-items: stretch;
     gap: 2rem;
-    justify-content: flex-start;
-    margin: 0;
-    flex-grow: 1;
 }
 
 .card {
     flex: 1 0 0;
 }
 
-.card p {
-    text-transform: capitalize;
+.card .scrollable {
+    overflow-y: auto;
+    word-wrap: break-word;
+    scrollbar-width: thin;
+    padding-right: 0.5rem;
+    scrollbar-color: var(--disabled-light) var(--background);
 }
 
 input {
     background-color: var(--background);
     border: none;
-    padding: 0.5rem 0.5rem;
+    padding: 0.5rem;
     margin-left: 0.5rem;
     box-shadow: var(--shadow);
 }
@@ -60,7 +57,7 @@ input:focus {
 
 label {
     position: absolute;
-    right: 4.75rem;
+    right: 5rem;
 }
 
 #cards-area #dots {

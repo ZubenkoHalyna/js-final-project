@@ -39,9 +39,9 @@ function fillUserInfo(user) {
     document.getElementById('username').innerText = `@${user.username}`;
     document.getElementById('user-full-name').innerText = user.name;
 
-    const usersLink = document.getElementById('user-details-link');
+    const userLink = document.getElementById('user-details-link');
     const params = new URLSearchParams({userId: user.id});
-    usersLink.href = `user-details.html?${params}`;
+    userLink.href = `user-details.html?${params}`;
 }
 
 function createCommentCard(comment) {
@@ -62,7 +62,7 @@ function createCommentCard(comment) {
     author.append(span, email);
 
     const body = document.createElement('p');
-    body.classList.add('comment-body');
+    body.classList.add('scrollable');
     body.innerText = comment.body;
 
     const card = document.createElement('div');

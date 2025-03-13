@@ -17,9 +17,8 @@
     --background: #caeaf5;
     --disabled-dark: #696969;
     --disabled-light: #9f9f9f;
-
-    --shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.15);
-    --accent-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.25);
+    --shadow: 2px 2px 5px 0 rgba(0, 0, 0, 15%);
+    --accent-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 25%);
 }
 
 button {
@@ -27,7 +26,7 @@ button {
     width: 100%;
     border: none;
     cursor: pointer;
-    background-color: #c54400;
+    background-color: var(--accent);
     box-shadow: var(--shadow);
     color: white;
 }
@@ -74,8 +73,9 @@ h1 {
     margin: 1rem auto;
     display: flex;
     flex-direction: column;
+    gap: 2rem;
     background-color: var(--background);
-    padding: 1rem;
+    box-shadow: var(--shadow);
     min-width: 800px;
     max-width: 80%;
 }
@@ -101,7 +101,6 @@ a {
     box-shadow: var(--shadow);
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
 }
 
 .secondary-text {
